@@ -87,6 +87,7 @@ body {
 }
 .card{
     min-width: 33%;
+    min-height: 8rem;
     padding: 20px;
     color: var(--sub-color);
     border-radius: 5px;
