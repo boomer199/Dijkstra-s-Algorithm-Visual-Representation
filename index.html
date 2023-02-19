@@ -1,60 +1,71 @@
-<html lang= "en">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="public/styles/main.css"/>
         <title>Algorithm Visualizer</title>
+        <link rel="stylesheet" type="text/css" href="./style/main.css" media="screen"/>
+        <script src="./script/p5.min.js"></script>
+        <script src="./script/Node.js"></script>
+        <script src="./script/main.js"></script>
     </head>
     <body>
-        <!-- ---------------------------- NAVBAR ---------------------------- -->
-        <div class="navbar">
-            <box class="element element-left"> Algorithm Visualizer
-            </box>
-            <box class="element">
-                <a href="https://github.com/boomer199/Visual-Representation-of-Algorithms" target=_blank>Github</a>
-            </box>
+        <img src="./assets/help-icon.png" id="help-icon" onclick="toggleHelpMenu()">
+        <div id="header-container">
+            <h1 onclick="window.location.reload()">Algorithm Visualizer</h1>
         </div>
-        <!-- ---------------------------- MAIN CONTENT ---------------------------->
-        <div class="content">
-            <div class="cards">
-                <div id="card1" class="card">
-                    <heading>Path Algorithms</heading>
-                    <content>
-                        <ul>
-                            <li><a href="/public/graph/graph.html">Dijkstra's Algorithm</a></li>
-                            <li><a href="/index.html">A*</a></li>
-                            <li><a href="/index.html">DFS Algorithm</a></li>
-                            <li><a href="/index.html">BFS Algorithm</a></li>
-                        </ul>
-                    </content>
-                </div>
-                <div id="card2" class="card">
-                    <heading>Sorting Algorithms</heading>
-                    <content>
-                        <ul>
-                            <li><a href="/index.html">Selection Sort</a></li>
-                            <li><a href="/index.html">Insertion Sort</a></li>
 
-                        </ul>
-                    </content>
-                </div>
-                <div id="card3" class="card">
-                    <heading>Other</heading>
-                    <content>
-                        <ul>
-                            <li><a href="/index.html">Binary Seach Tree</a></li>
-                            <li><a href="/index.html">Binary Tree</a></li>
-                            <li><a href="/index.html">Floodfill</a></li>
-                            <li><a href="/index.html">K-ary tree</a></li>
-                        </ul>
-                    </content>
-                </div>
-            </div>
+        <div id="options-container">
+            <!-- Input how many rows/cols in the grid (Default is 20x20) -->
+            <input id="rows" type="number" min="5" placeholder="Rows" onkeyup="initGrid()">
+            <input id="cols" type="number" min="5" placeholder="Cols" onkeyup="initGrid()">
 
-            <!-- ---------------------------- INFO ---------------------------- -->
-            <!-- TODO: Make an information section and maybe a why we made this project section-->
-            
+            <!-- Pick which node you want to place on the grid -->
+            <b>Node Type:</b>
+            <input type="radio" id="start" name="node-type" value="1">
+            <label for="node-type">Start</label>
+            <input type="radio" id="finish" name="node-type" value="2">
+            <label for="node-type">Finish</label>
+            <input type="radio" id="wall" name="node-type" value="3" checked>
+            <label for="node-type">Wall</label>
+
+            <!-- Decide which algorithm to use -->
+            <b>Algorithm:</b>
+            <select id="algorithm-choice">
+                <option value="1">BFS</option>
+                <option value="2">DFS</option>
+            </select>
 
         </div>
 
+        <div id="operations-container">
+            <!-- start the algorithm -->
+            <input type="button" value="Reset Grid" onclick="initGrid()">
+            <input type="button" value="Start" onclick="startSearch()">
+        </div>
+
+        <div id="canvas"></div>
+
+        <div id="help-menu">
+            <button id="exit-button" onclick="toggleHelpMenu()">X</button>
+            <h1>Help</h1>
+            <p id="help-text">
+            1.) Draw nodes by clicking and dragging mouse<br><br>
+            2.) Remove walls by holding shift and dragging (while clicking) the mouse<br><br>
+            3.) Select a node type by clicking a radio button in the top menu<br><br>
+            4.) Select an algorithm to use by clicking the dropdown menu in the top menu<br><br>
+            5.) Press the start button to run the visualization. There is a play/pause button in the bottom menu<br><br>
+            6.) For instantaneous path finding, click the instant path button in the bottom menu<br><br>
+
+            </a>
+            </p>
+        </div>
+
+        <div id="playback-menu">
+            <input type="button" value="Start" onclick="startSearch()">
+            <input type="button" value="Play/Pause" onclick="togglePlay()">
+            <b>Speed:</b>
+            <input type="range" id="speed-slider" value="8" min="0" max="10">
+            <input type="button" value="Instant Path (BFS)" onclick="instantPath()">
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+        </div>
     </body>
 </html>
