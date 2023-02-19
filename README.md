@@ -1,2 +1,2 @@
-# Dijkstra-s-Algorithm-Visual-Representation
+#Algorithm-Visual-Representation
 uses p5.js
