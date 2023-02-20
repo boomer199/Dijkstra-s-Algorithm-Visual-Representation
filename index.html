@@ -3,9 +3,11 @@
     <head>
         <title>Algorithm Visualizer</title>
         <link rel="stylesheet" type="text/css" href="./style/main.css" media="screen"/>
-        <script src="./script/p5.min.js"></script>
         <script src="./script/Node.js"></script>
         <script src="./script/main.js"></script>
+        <script src="./script/algos/bfs.js"></script>
+        <script src="./script/algos/dfs.js"></script>
+
     </head>
     <body>
         <img src="./assets/help-icon.png" id="help-icon" onclick="toggleHelpMenu()">
@@ -63,8 +65,8 @@
             <input type="button" value="Start" onclick="startSearch()">
             <input type="button" value="Play/Pause" onclick="togglePlay()">
             <b>Speed:</b>
-            <input type="range" id="speed-slider" value="8" min="0" max="10">
-            <input type="button" value="Instant Path (BFS)" onclick="instantPath()">
+            <input type="range" id="speed-slider" value="8" min="0" max="15">
+            <input type="button" value="Instant Path (Only BFS)" onclick="instantPath()">
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
         </div>
     </body>
