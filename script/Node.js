@@ -1,8 +1,9 @@
 class Node{
-    constructor(x, y, value){
+    constructor(x, y, value, weight){ 
         this.x = x;
         this.y = y;
         this.value = value;
+        this.weight = weight;
 
         //used in search every search algorithm
         this.visited = false;
@@ -29,8 +30,34 @@ class Node{
             unvisited.push(grid[this.y][this.x-1]);
         if(this.y < rows-1 && !grid[this.y+1][this.x].mazeVisited)
             unvisited.push(grid[this.y+1][this.x]);
-        if(this.x < cols-1 && !grid[this.y-1][this.x].mazeVisited)
+        if(this.x < cols-1 && !grid[this.y][this.x+1].mazeVisited)
             unvisited.push(grid[this.y][this.x+1]);
         return unvisited;
     }
+
+    getEdgeWeight(current, neighbor) {
+        return Math.abs(current.weight - neighbor.weight);
+    }
+
+    getNeighbors() {
+        let neighbors = [];
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
+            if (i === 0 && j === 0) {
+              continue;
+            }
+            if (i === 0 || j === 0) { // only include horizontally or vertically adjacent cells
+              let x = this.x + i;
+              let y = this.y + j;
+              if (x >= 0 && x < cols && y >= 0 && y < rows) {
+                neighbors.push(grid[y][x]);
+              }
+            }
+          }
+        }
+        return neighbors;
+      }
+      
+    
+    
 }
