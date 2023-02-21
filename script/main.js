@@ -47,18 +47,15 @@ function drawVisual(algo) {
         showAmount = 4;
     } else if (algo == 2) {
         showAmount = 1;
-    } 
-    else if (algo == 3) {
+    } else if (algo == 3) {
         showAmount = 4;
-    } 
+    }
 
     //draw visited nodes first
-    if (visitedRenderQueue.length > 0 && frameCount % speed == 0) {
+    if (visitedRenderQueue.length >= showAmount && frameCount % speed == 0) {
         for (let i = 0; i < showAmount; i++) {
-            if (visitedRenderQueue.length > 0) {
-                let current = visitedRenderQueue.shift();
-                current.value = 5;
-            }
+            let current = visitedRenderQueue.shift();
+            current.value = 5;
         }
     }
 
@@ -68,6 +65,7 @@ function drawVisual(algo) {
         current.value = 4;
     }
 }
+
 
 function windowResized() {
     let cw = document.getElementById('canvas').offsetWidth;
@@ -79,6 +77,8 @@ function windowResized() {
 }
 
 function initGrid(){
+    grid = [];
+
     //read in the input from the user. If the number give > 0 use it, otherwise use the default values
     let rowInput = Math.round(document.getElementById('rows').value);
     rows = rowInput >= 5 ? rowInput : defaultRows;
@@ -89,8 +89,6 @@ function initGrid(){
     xstep = width / cols;
     ystep = height / rows
 
-    //init a new grid
-    grid = [];
     for(let i = 0; i < rows; i++){
         grid.push([]);
         for(let j = 0; j < cols; j++){
@@ -266,7 +264,7 @@ function startSearch() {
     }
     
     else if (algorithm == 3) {
-        dijkstra(instantaneous);
+        dijkstra();
     }
 
 }

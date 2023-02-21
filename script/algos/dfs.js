@@ -52,6 +52,6 @@ function dfs(){
             }
         }
     }
-
+    console.log(current)
     return current;
 }

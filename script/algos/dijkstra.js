@@ -1,94 +1,114 @@
-function dijkstra(instantaneous) {
-    // Initialize distance and visited arrays
-    let distance = [];
-    let visited = [];
-    for (let y = 0; y < rows; y++) {
-        distance[y] = [];
-        visited[y] = [];
-        for (let x = 0; x < cols; x++) {
-            distance[y][x] = Infinity;
-            visited[y][x] = false;
-        }
-    }
-    // Set distance of start node to 0 and add it to the priority queue
-    let startNode = getStartNode();
-    console.log(startNode)
-    distance[startNode.y][startNode.x] = 0;
-    let queue = new PriorityQueue();
-    queue.enqueue(startNode, 0);
-
-    while (!queue.isEmpty()) {
-        // Get the node with the lowest priority (distance)
-        let current = queue.dequeue();
-    
-        // Mark current node as visited
-        visited[current.y][current.x] = true;
-    
-        // Check if we've reached the finish node
-        if (current.equals(getFinishNode())) {
-            break;
-        }
-    
-        // Check neighbors and update their distances if needed
-        let neighbors = current.getNeighbors();
-        for (let i = 0; i < neighbors.length; i++) {
-            let neighbor = neighbors[i];
-            if (!visited[neighbor.y][neighbor.x] && neighbor.value != 3) {
-                let tentativeDistance = distance[current.y][current.x] + current.getEdgeWeight(current, neighbor);
-                if (tentativeDistance < distance[neighbor.y][neighbor.x]) {
-                    distance[neighbor.y][neighbor.x] = tentativeDistance;
-                    neighbor.distance = tentativeDistance;
-                    neighbor.parent = current;
-                    if (!instantaneous) {
-                        // Add neighbor to the priority queue with its new distance
-                        queue.enqueue(neighbor, tentativeDistance);
-                    }
-                }
-            }
-        }
-    
-        // Update the pathRenderQueue with the new shortest path
-        if (!instantaneous) {
-            pathRenderQueue = [];
-            let current = getFinishNode();
-            while (current.parent != null && current.parent != 2 && current.parent != 3) {
-                current.value = 4;
-                pathRenderQueue.push(current);
-                current = current.parent;
-            }
-            pathRenderQueue.reverse();
-            pathRenderQueue.push(getFinishNode());
-        }
-    }    
-}
-
-
-
-class PriorityQueue {
-    constructor() {
-      this.elements = [];
-    }
-  
-    isEmpty() {
-      return this.elements.length === 0;
-    }
-  
-    enqueue(item, priority) {
-      let added = false;
-      for (let i = 0; i < this.elements.length; i++) {
-        if (priority < this.elements[i].priority) {
-          this.elements.splice(i, 0, { item, priority });
-          added = true;
-          break;
-        }
-      }
-      if (!added) {
-        this.elements.push({ item, priority });
-      }
-    }
-  
-    dequeue() {
-      return this.elements.shift().item;
+function dijkstra() {
+  // initialize the distance and visited arrays
+  let distance = [];
+  let visited = [];
+  for (let i = 0; i < rows; i++) {
+    distance[i] = [];
+    visited[i] = [];
+    for (let j = 0; j < cols; j++) {
+      distance[i][j] = Infinity;
+      visited[i][j] = false;
     }
   }
-  
+
+  distance[getStartNode().y][getStartNode().x] = 0;
+  // initialize priority queue with start node
+  let priorityQueue = new PriorityQueue();
+  priorityQueue.enqueue(getStartNode(), 0);
+
+  while (!priorityQueue.isEmpty()) {
+    // dequeue the node with the lowest distance value
+    let current = priorityQueue.dequeue();
+
+    // if the current node is the finish node, we can exit the loop
+    if (current.equals(getFinishNode())) {
+      break;
+    }
+
+    // mark the current node as visited
+    visited[current.y][current.x] = true;
+
+    // loop through all the neighbors of the current node
+    for (let i = 0; i < current.getNeighbors().length; i++) {
+
+      let neighbor = current.getNeighbors()[i];
+
+      // skip wall nodes
+      if (neighbor.value == 3) {
+        continue;
+      }
+
+      // calculate the tentative distance to the neighbor through the current node
+      let weight = current.getEdgeWeight(current, neighbor);
+      console.log(current.getEdgeWeight(current, neighbor))
+      let tentativeDistance = distance[current.y][current.x] + weight;
+
+      // if the neighbor has not been visited and the tentative distance to the neighbor is less than its current distance, update its distance and add it to the priority queue
+      if (!visited[neighbor.y][neighbor.x] && tentativeDistance < distance[neighbor.y][neighbor.x]) {
+        distance[neighbor.y][neighbor.x] = tentativeDistance;
+        neighbor.parent = current;
+        priorityQueue.enqueue(neighbor, tentativeDistance);
+      }
+    }
+  }
+
+  // if there is no path to the finish node, return null
+  if (!getFinishNode()) {
+    return null;
+  }
+
+  // backtrack from the finish node to get the shortest path
+  let path = [];
+  let current = getFinishNode();
+  while (current.parent != null) {
+    path.unshift(current);
+    current = current.parent;
+  }
+  path.unshift(current);
+
+  let rowInput = Math.round(document.getElementById('rows').value);
+  rows = rowInput >= 5 ? rowInput : defaultRows;
+  let colInput = Math.round(document.getElementById('cols').value);
+  cols = colInput >= 5 ? colInput : defaultCols;
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (grid[i][j].visited == true) {
+        visitedRenderQueue.push(grid[i][j])
+      }
+    }
+  }
+  // mark the nodes on the shortest path as visited (for rendering purposes)
+  path.reverse()
+  for (let i = 0; i < path.length; i++) {
+    if (path[i] != getStartNode() && path[i] != getFinishNode()) {
+      pathRenderQueue.push(path[i])
+    }
+  }
+
+  // return the shortest path
+
+  return path;
+}
+
+class PriorityQueue {
+  constructor() {
+    this.items = [];
+  }
+
+  enqueue(item, priority) {
+    this.items.push({
+      item,
+      priority
+    });
+    this.items.sort((a, b) => a.priority - b.priority);
+  }
+
+  dequeue() {
+    return this.items.shift().item;
+  }
+
+  isEmpty() {
+    return this.items.length === 0;
+  }
+}
