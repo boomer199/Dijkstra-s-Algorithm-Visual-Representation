@@ -5,6 +5,7 @@ function dfs(){
     let stack = [getStartNode()];
 
     while(stack.length > 0){
+        algoIterations++;
         current = stack.pop();
 
         if(current.equals(finishNode)){

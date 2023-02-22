@@ -4,10 +4,13 @@
         <title>Algorithm Visualizer</title>
         <link rel="stylesheet" type="text/css" href="../style/main.css" media="screen"/>
         <script src="./script/graphs/Node.js"></script>
+        <script src="./script/graphs/PriorityQueue.js"></script>
         <script src="./script/graphs/main.js"></script>
         <script src="./script/graphs/algos/bfs.js"></script>
         <script src="./script/graphs/algos/dfs.js"></script>      
         <script src="./script/graphs/algos/dijkstra.js"></script>
+        <script src="./script/graphs/algos/aStar.js"></script>
+
  
 
 
@@ -41,12 +44,15 @@
                 <option value="1">BFS</option>
                 <option value="2">DFS</option>
                 <option value="3">Dijkstra's</option>
+                <option value="4">A*</option>
+
             </select>
 
         </div>
 
         <div id="operations-container">
             <!-- start the algorithm -->
+            <p id = "iterations">Iterations:</p>
             <input type="button" value="Reset Grid" onclick="initGrid()">
             <input type="button" value="Start" onclick="startSearch()">
             <p id = "cost">Cost:</p>
@@ -66,6 +72,7 @@
             6.) For instantaneous path finding, click the instant path button in the bottom menu<br><br>
 
             Note: Weighted graphs are only for Dijkstra's Algorithm and A* because DFS and BFS do not handle weighted graphs well.<br><br>
+            <a id = "homeLink" href="../home.html"> Home </a>
 
             </a>
             </p>

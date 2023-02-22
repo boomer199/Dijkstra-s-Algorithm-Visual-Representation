@@ -17,6 +17,7 @@ function dijkstra() {
   priorityQueue.enqueue(getStartNode(), 0);
 
   while (!priorityQueue.isEmpty()) {
+    algoIterations++;
     // dequeue the node with the lowest distance value
     let current = priorityQueue.dequeue();
 
@@ -27,6 +28,10 @@ function dijkstra() {
 
     // mark the current node as visited
     visited[current.y][current.x] = true;
+    if(current.value != 1 && current.value != 2 && current.value != 3){
+      visitedRenderQueue.push(current)
+    }
+
 
     // loop through all the neighbors of the current node
     for (let i = 0; i < current.getNeighbors().length; i++) {
@@ -70,18 +75,12 @@ function dijkstra() {
   let colInput = Math.round(document.getElementById('cols').value);
   cols = colInput >= 5 ? colInput : defaultCols;
 
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      if (grid[i][j].visited == true) {
-        visitedRenderQueue.push(grid[i][j])
-      }
-    }
-  }
+  visitedRenderQueue.push(current)
+
   // mark the nodes on the shortest path as visited (for rendering purposes)
   path.reverse()
   for (let i = 0; i < path.length; i++) {
     if (path[i] != getStartNode() && path[i] != getFinishNode()) {
-      console.log(path[i].weight)
       algoCost += path[i].weight;
       pathRenderQueue.push(path[i])
     }
@@ -92,24 +91,3 @@ function dijkstra() {
   return path;
 }
 
-class PriorityQueue {
-  constructor() {
-    this.items = [];
-  }
-
-  enqueue(item, priority) {
-    this.items.push({
-      item,
-      priority
-    });
-    this.items.sort((a, b) => a.priority - b.priority);
-  }
-
-  dequeue() {
-    return this.items.shift().item;
-  }
-
-  isEmpty() {
-    return this.items.length === 0;
-  }
-}

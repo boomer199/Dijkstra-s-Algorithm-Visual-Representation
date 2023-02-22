@@ -20,6 +20,8 @@ let executionTime = '---';
 
 // determines cost of algorithm
 let algoCost = 0;
+// determines iterations that algo needed to go through
+let algoIterations = 0;
 
 function setup() {
     let cw = document.getElementById('canvas').offsetWidth;
@@ -52,13 +54,18 @@ function drawVisual(algo) {
         showAmount = 1;
     } else if (algo == 3) {
         showAmount = 4;
+    } else if (algo == 4) {
+        showAmount = 4;
     }
 
     //draw visited nodes first
+    
     if (visitedRenderQueue.length >= showAmount && frameCount % speed == 0) {
         for (let i = 0; i < showAmount; i++) {
             let current = visitedRenderQueue.shift();
-            current.value = 5;
+            if(current.value != getStartNode().value){
+                current.value = 5;
+            }
         }
     }
 
@@ -69,6 +76,8 @@ function drawVisual(algo) {
     }
 
     document.getElementById("cost").innerHTML = "Cost: " + algoCost;
+    document.getElementById("iterations").innerHTML = "Iterations: " + algoIterations;
+
 }
 
 
@@ -236,6 +245,7 @@ function drawNodes() {
 
 function startSearch() {
     algoCost = 0;
+    algoIterations =0;
     pathRenderQueue = [];
     visitedRenderQueue = [];
     play = true;
@@ -269,8 +279,14 @@ function startSearch() {
         dfs(instantaneous);
     }
     
+    //dijkstra
     else if (algorithm == 3) {
         dijkstra();
+    }
+
+    //A*
+    else if (algorithm == 4) {
+        aStar();
     }
 
 }

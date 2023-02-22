@@ -211,3 +211,15 @@ div#playback-menu > input[type='button']:hover{
 #cost {
     font-weight: bold;
 }
+
+#iterations {
+    font-weight: bold;
+}
+
+#homeLink {
+    font-weight: bold;
+    color: var(--sub-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

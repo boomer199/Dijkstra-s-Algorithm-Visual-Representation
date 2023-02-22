@@ -5,6 +5,7 @@ function bfs(instantaneous) {
     queue.push(startNode);
     let current = null;
     while (queue.length > 0) {
+    algoIterations++;
     current = queue.shift();
     if (current.equals(getFinishNode())) {
     break;
