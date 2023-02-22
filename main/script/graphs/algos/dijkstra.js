@@ -40,7 +40,6 @@ function dijkstra() {
 
       // calculate the tentative distance to the neighbor through the current node
       let weight = current.getEdgeWeight(current, neighbor);
-      console.log(current.getEdgeWeight(current, neighbor))
       let tentativeDistance = distance[current.y][current.x] + weight;
 
       // if the neighbor has not been visited and the tentative distance to the neighbor is less than its current distance, update its distance and add it to the priority queue
@@ -82,6 +81,8 @@ function dijkstra() {
   path.reverse()
   for (let i = 0; i < path.length; i++) {
     if (path[i] != getStartNode() && path[i] != getFinishNode()) {
+      console.log(path[i].weight)
+      algoCost += path[i].weight;
       pathRenderQueue.push(path[i])
     }
   }

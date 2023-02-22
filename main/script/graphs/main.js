@@ -18,6 +18,9 @@ let algorithm = 1;
 
 let executionTime = '---';
 
+// determines cost of algorithm
+let algoCost = 0;
+
 function setup() {
     let cw = document.getElementById('canvas').offsetWidth;
     let ch = document.getElementById('canvas').offsetHeight;
@@ -64,6 +67,8 @@ function drawVisual(algo) {
         let current = pathRenderQueue.pop();
         current.value = 4;
     }
+
+    document.getElementById("cost").innerHTML = "Cost: " + algoCost;
 }
 
 
@@ -230,6 +235,7 @@ function drawNodes() {
 }
 
 function startSearch() {
+    algoCost = 0;
     pathRenderQueue = [];
     visitedRenderQueue = [];
     play = true;

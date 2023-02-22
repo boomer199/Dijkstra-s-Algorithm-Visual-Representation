@@ -2,18 +2,20 @@
 <html>
     <head>
         <title>Algorithm Visualizer</title>
-        <link rel="stylesheet" type="text/css" href="./style/main.css" media="screen"/>
-        <script src="./script/Node.js"></script>
-        <script src="./script/main.js"></script>
-        <script src="./script/algos/bfs.js"></script>
-        <script src="./script/algos/dfs.js"></script>      
-        <script src="./script/algos/dijkstra.js"></script>
+        <link rel="stylesheet" type="text/css" href="../style/main.css" media="screen"/>
+        <script src="./script/graphs/Node.js"></script>
+        <script src="./script/graphs/main.js"></script>
+        <script src="./script/graphs/algos/bfs.js"></script>
+        <script src="./script/graphs/algos/dfs.js"></script>      
+        <script src="./script/graphs/algos/dijkstra.js"></script>
  
 
 
 
     </head>
     <body>
+       
+
         <img src="./assets/help-icon.png" id="help-icon" onclick="toggleHelpMenu()">
         <div id="header-container">
             <h1 onclick="window.location.reload()">Algorithm Visualizer</h1>
@@ -47,6 +49,7 @@
             <!-- start the algorithm -->
             <input type="button" value="Reset Grid" onclick="initGrid()">
             <input type="button" value="Start" onclick="startSearch()">
+            <p id = "cost">Cost:</p>
         </div>
 
         <div id="canvas"></div>

@@ -68,9 +68,7 @@ function bfs(instantaneous) {
             visitedRenderQueue.splice(i, 1);
         }
     }
-    
-    // Here's the part where we handle the weights
-    // Instead of just taking the shortest distance, we now take the shortest weighted distance
+
     pathRenderQueue = [];
     if (!current.equals(getFinishNode())) {
         return null;
@@ -78,6 +76,8 @@ function bfs(instantaneous) {
     current = current.parent;
     while (current.parent != null) {
         pathRenderQueue.push(current);
+        algoCost ++;
+
         current = current.parent;
     }
 }    

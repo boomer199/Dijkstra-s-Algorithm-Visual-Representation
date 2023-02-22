@@ -11,6 +11,7 @@ function dfs(){
             current = current.parent;
             while(current.parent != null){
                 pathRenderQueue.push(current);
+                algoCost ++;
                 current = current.parent;
             }
             break;
@@ -52,6 +53,5 @@ function dfs(){
             }
         }
     }
-    console.log(current)
     return current;
 }
