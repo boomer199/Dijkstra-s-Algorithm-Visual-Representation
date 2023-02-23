@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Algorithm Visualizer</title>
+        <link rel="stylesheet" type="text/css" href="../style/sorting.css" media="screen"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="./script/sorting/main.js"></script>
+        <script src="./script/sorting/algos/bubbleSort.js"></script>
+        <script src="./script/sorting/algos/insertionSort.js"></script>
+        <script src="./script/sorting/algos/selectionSort.js"></script>
+
+ 
+    </head>
+    <body>
+       
+
+        <img src="./assets/help-icon.png" id="help-icon" onclick="toggleHelpMenu()">
+        <div id="header-container">
+            <h1 onclick="window.location.reload()">Algorithm Visualizer</h1>
+        </div>
+
+        <div id="help-menu">
+            <button id="exit-button" onclick="toggleHelpMenu()">X</button>
+            <h1>Help</h1>
+            <p id="help-text">
+                <br><br>
+            1.) Input values in the boxes below. <br><br>
+            2.) Click on the algorithm to start searching. <br><br>
+            
+            Green = Just sorted<br><br>
+            Red = About to be sorted<br><br>
+            Orange = Sorted or Pending<br><br>
+
+            
+            <a id = "homeLink" href="../home.html"> Home </a>
+
+            
+            </p>
+        </div>
+        <br />
+        <div id="options-container">
+            <b>Number of Bars:</b>
+            <input id="bars" type="number" min="20" max="50" value = "50" placeholder="# of Bars" onkeyup="generateArray()">
+            <b>Speed:</b>
+            <input id="speed" type="range" min ="1" max = "500" value = "100" onchange="handleSpeed()">
+            <button id="stopButton" onclick="window.location.reload()">Stop</button>
+
+        </div>
+    <div id="array-container"></div>
+
+    <br /><br />
+
+    <div style="text-align: center">
+        
+        <button id="new-array-button" class="btn" onclick="generateArray()">Display Array </button>
+        <button id="btn2" class="btn" onclick="insertionSort()">Insertion Sort</button>
+        <button id="btn3" class="btn" onclick="bubbleSort()">Bubble Sort</button>
+        <button id="btn3" class="btn" onclick="selectionSort()">Selection Sort</button>
+
+
+        <br /><br />
+
+        <h2 id="writeHere"></h2>
+    </div>
+    </body>
+</html>

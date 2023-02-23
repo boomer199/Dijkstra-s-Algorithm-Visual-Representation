@@ -1,0 +1,210 @@
+:root{
+    --bg-color: #fff;
+    --main-color: #212b43;
+    --caret-color: #212b43;
+    --sub-color: #62cfe6;
+    --sub-alt-color: #ddeff3;
+    --text-color: #212b43;
+    --error-color: #f19dac;
+    --error-extra-color: #e58c9d;
+    --colorful-error-color: #f19dac;
+    --colorful-error-extra-color: #e58c9d;
+      
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    color: var(--sub-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--sub-alt-color);
+  }
+
+*{  
+    padding: 0;
+    margin: 0;
+}
+
+::selection{
+    background: var(--main-color);
+    color: #000;
+}
+
+
+body{
+    font-family: 'Verdana' ;
+}
+
+
+.bar {
+    height: 20px;
+    background-color: teal;
+    margin: 0 0.35%;
+    padding: 0.5%;
+    display: inline-block;
+    
+    margin-top: auto;
+  }
+
+div#header-container{
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div#header-container > h1{
+    font-size: 400%;
+    color: var(--main-color);
+}
+
+div#header-container > h1:hover{
+    cursor: pointer;
+}
+
+div#help-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div#help-container > p{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+img#help-icon{
+    object-fit: contain;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    height: 3vh;
+    width: 3vw;
+    filter: invert(40%) sepia(92%) saturate(348%) hue-rotate(310deg) brightness(107%) contrast(76%);
+}
+
+img#help-icon:hover{
+    filter: grayscale(100%);
+    cursor: pointer;
+}
+
+div#help-menu{
+    background: #ffffff;
+    display: grid;
+    visibility: hidden;
+    position: absolute;
+    grid-template-columns: 40vw;
+    grid-template-rows: 3vh 5vh auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 3px var(--main-color);
+}
+
+div#help-menu > button{
+    background: var(--main-color);
+    color: #ffffff;
+    text-align: right;
+    padding-right: 10px;
+    border: none;
+}
+
+div#help-menu > button:hover{
+    cursor: pointer;
+}
+
+div#help-menu > h1{
+    text-align: center;
+    color: var(--main-color);
+}
+
+div#help-menu > p#help-text{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    -webkit-appearance: none ;
+    background: var(--main-color);
+    color: #ffffff;
+    min-height: 50%;
+    min-width: 10%;
+    padding: 4px ;
+    border: solid 1px #ffffff;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background: #ffffff ;
+    color: var(--main-color);
+    border-color: var(--main-color) ;
+}
+
+#array-container {
+    display: flex;
+    height: 420px ;
+   justify-content: center;
+   align-items: center;
+}
+
+#homeLink {
+    font-weight: bold;
+    color: var(--sub-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#options-container > input[type='number']{
+    height: 35%;
+    padding: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: solid 1px var(--sub-color);
+}
+
+div#options-container > input[type='number']{
+    height: 35%;
+    padding: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 8%;
+    border: solid 1px var(--sub-color);
+}
+
+div#options-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div#options-container > b{
+    margin-left: 30px;
+    margin-right: 5px;
+}
+
+#stopButton {
+    -webkit-appearance: none ;
+    background: var(--main-color);
+    color: #ffffff;
+    min-height: 50%;
+    min-width: 10%;
+    padding: 4px ;
+    border: solid 1px #ffffff;
+    margin-left: 30px;
+    margin-right: 10px;
+}
