@@ -8,6 +8,8 @@
         <script src="./script/sorting/algos/bubbleSort.js"></script>
         <script src="./script/sorting/algos/insertionSort.js"></script>
         <script src="./script/sorting/algos/selectionSort.js"></script>
+        <script src="./script/sorting/algos/bogosort.js"></script>
+
 
  
     </head>
@@ -24,12 +26,11 @@
             <h1>Help</h1>
             <p id="help-text">
                 <br><br>
-            1.) Input values in the boxes below. <br><br>
-            2.) Click on the algorithm to start searching. <br><br>
+            1.) Click on the algorithm to start searching. <br><br>
+            2.) Don't run multiple sorting algoritms at once.   <br><br>
+            3.) Pressing "Stop" reloads the page and stops the sorting, but does make a new array  <br><br>
             
-            Green = Just sorted<br><br>
-            Red = About to be sorted<br><br>
-            Orange = Sorted or Pending<br><br>
+            Note: Although some algorithms may take longer to animate than others, that doesn't mean that they are slower, the average time complexities of the algoritms are listed on the more information page.<br><br>
 
             
             <a id = "homeLink" href="../home.html"> Home </a>
@@ -52,10 +53,11 @@
 
     <div style="text-align: center">
         
-        <button id="new-array-button" class="btn" onclick="generateArray()">Display Array </button>
+        <button id="new-array-button" class="btn" onclick="generateArray()">Reset Array </button>
         <button id="btn2" class="btn" onclick="insertionSort()">Insertion Sort</button>
         <button id="btn3" class="btn" onclick="bubbleSort()">Bubble Sort</button>
-        <button id="btn3" class="btn" onclick="selectionSort()">Selection Sort</button>
+        <button id="btn4" class="btn" onclick="selectionSort()">Selection Sort</button>
+        <button id="btn5" class="btn" onclick="bogosort()">Bogo Sort</button>
 
 
         <br /><br />

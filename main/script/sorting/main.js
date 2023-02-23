@@ -6,7 +6,7 @@ let speed = 100;
 // Function to generate a new array of random numbers
 function generateArray() {
     let barInput = Math.round(document.getElementById('bars').value);
-    numBars = barInput >= 20 ? barInput : defaultBars;
+    numBars = barInput >= 5 ? barInput : defaultBars;
     if(numBars > 50){
         numBars = 50
         alert("Maximum number of bars is 50")
@@ -19,7 +19,7 @@ function generateArray() {
     const container = document.getElementById("array-container");
     container.innerHTML = "";
 
-    // Generate 50 random numbers between 1 and 100
+    // Generate numbars random numbers between 1 and 100
     for (let i = 0; i < numBars; i++) {
         bars.push(Math.floor(Math.random() * 100) + 1);
     }
@@ -28,11 +28,13 @@ function generateArray() {
     // Create a bar for each number and add it to the container
     for (let i = 0; i < bars.length; i++) {
         const bar = document.createElement("div");
-        bar.classList.add("bar");
-        bar.style.height = bars[i] * 4 + "px";
-        if(bars[i] == bars[rand]){
+        if(i == rand){
             bar.style.height = 400 + "px";
             bars[rand] = 100;
+            bar.classList.add("bar");
+        } else {
+            bar.classList.add("bar");
+            bar.style.height = bars[i] * 4 + "px";
         }
         container.appendChild(bar);
     }
