@@ -1,0 +1,135 @@
+:root{
+    --bg-color: #fff;
+    --main-color: #212b43;
+    --caret-color: #212b43;
+    --sub-color: #62cfe6;
+    --sub-alt-color: #ddeff3;
+    --text-color: #212b43;
+    --error-color: #f19dac;
+    --error-extra-color: #e58c9d;
+    --colorful-error-color: #f19dac;
+    --colorful-error-extra-color: #e58c9d;
+      
+}
+
+/*  ==========
+    Flex Brake
+    ==========  */
+
+.brake {
+    display: none;
+    width: 100%;
+}
+
+/*  ===================
+    Button Body Styling
+    ===================  */
+
+.button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 25%;
+    margin: 0 auto;
+    border: 3px solid;
+    font-size: 150%;
+    border-image-slice: 1;
+}
+
+.button:before {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    content: '';
+}
+
+.button:hover:before,
+.button:active:before {
+    pointer-events: none;
+    opacity: 0;
+}
+
+
+
+/*  ====================
+    Button Input Styling
+    ====================  */
+
+.button > input {
+    align-self: stretch;
+    padding: 0;
+    width: 68%;
+    border: none;
+    outline: none;
+    font-size: 100%;
+    text-align: center;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+/*  =====================
+    Actual Button Styling
+    =====================  */
+
+.button > div {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    justify-content: center;
+    width: 32%;
+    border-left: 2px solid;
+    border-color: var(--main-color);
+    color: var(--text-color);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    animation: backgroundSlideOut 300ms ease forwards;
+}
+
+
+
+/*  =================
+    Media Adjustments
+    =================  */
+
+@media screen and (min-width: 1024px) {
+    .brake {
+        display: inline-block;
+    }
+    
+    .button {
+        max-width: 13%;
+        min-width: 194px;
+        height: 30%;
+        min-height: 40px;
+        margin-left: 4%;
+        margin-right: 4%;
+        font-size: 140%;
+    }
+
+    .button:nth-child(n + 4) {
+        margin-bottom: 10px;
+    }
+}
+
+/*  ==========
+    Animations
+    ==========  */
+
+@keyframes backgroundSlideIn {
+    to {
+        background-size: 100% 100%;
+    }
+}
+
+@keyframes backgroundSlideOut {
+    from {
+        background-size: 100% 100%;
+    }
+    to {
+        background-size: 0% 100%;
+    }
+}
