@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Image Classification Demo</title>
+    <title>Upload and Predict</title>
   </head>
-  <script src="https://unpkg.com/@pytorch/torchvision@0.8.2/dist/torchvision.min.js"></script>
   <body>
-    <h1>Image Classification Demo</h1>
-    <input type="file" id="image-upload" />
-    <button id="classify-button">Classify</button>
-    <div id="output"></div>
-
-    <script src="./script/neuralnetwork/algorithm/main.js"></script>
+    <input type="file" id="fileInput" />
+    <div id="result"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.7.0"></script>
+    <script src="script/neuralnetwork/algorithm/nn.js"></script>
+    <button>Submit</button>
   </body>
 </html>
