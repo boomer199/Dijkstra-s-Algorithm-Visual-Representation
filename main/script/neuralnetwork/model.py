@@ -20,7 +20,7 @@ transform = transforms.Compose([
 
 
 # Load image and apply transformation
-image = Image.open('canoe.jpg')
+image = Image.open('input.jpg')
 image = image.convert('RGB')
 image_tensor = transform(image).unsqueeze(0)
 print(image_tensor.shape)
@@ -33,7 +33,37 @@ probabilities = torch.nn.functional.softmax(output, dim=1)
 max_probs, max_indices = torch.max(probabilities, dim=1)
 predicted_class_idx = max_indices.item()
 predicted_class_label = class_names[predicted_class_idx]
-print(max_indices)
-print(f"The predicted class is {predicted_class_label}")
+# print(max_indices)
+print(f"Prediction: {predicted_class_label}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #TODO: for some reason model thinks that a car is a hook bruh
+
