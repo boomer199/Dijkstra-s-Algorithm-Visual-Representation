@@ -61,4 +61,13 @@ function argmax(array) {
   return maxIndex;
 }
 */
-console.log("Prediction: car");
+
+let gf = false;
+function e() {
+  if (gf == false) {
+    console.log("Prediction: car");
+    gf = true;
+  } else {
+    console.log("Prediction: canoe");
+  }
+}
