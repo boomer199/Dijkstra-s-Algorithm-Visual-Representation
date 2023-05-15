@@ -14,7 +14,7 @@ const session = new onnxruntime.InferenceSession("model.onnx");
 document.getElementById("fileInput").addEventListener("change", e);
 
 // Create a function that will be called when the file is uploaded.
-function e() {
+function submit() {
   // Get the file that was uploaded.
   const file = document.getElementById("fileInput").files[0];
   if (file) {
