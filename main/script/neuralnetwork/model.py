@@ -1,69 +1,29 @@
-import torch #type: ignore
-import torchvision.models as models #type: ignore
-import torchvision.transforms as transforms #type: ignore
-from PIL import Image #type: ignore
-import urllib.request
-url = 'https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt'
-class_names = urllib.request.urlopen(url).read().decode('utf-8').split('\n')[:-1]
+from torchvision.io import read_image
+from torchvision.models import resnet50, ResNet50_Weights
+import torch
 
+img = read_image("canoe.jpg")
+if img.shape[0] == 4:
+    img = img[:3]
+print(img.shape)
 
-# Load pre-trained model
-model = models.resnet50(pretrained=True)
+# Step 1: Initialize model with the best available weights
+weights = ResNet50_Weights.DEFAULT
+model = resnet50(weights=weights)
+model.eval()
 
-# Define image transformation
-transform = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-])
+# Step 2: Initialize the inference transforms
+preprocess = weights.transforms()
 
+# Step 3: Apply inference preprocessing transforms
+batch = preprocess(img).unsqueeze(0)
 
-# Load image and apply transformation
-image = Image.open('input.jpg')
-image = image.convert('RGB')
-image_tensor = transform(image).unsqueeze(0)
-print(image_tensor.shape)
-# Make prediction
-with torch.no_grad():
-    output = model(image_tensor)
+# Step 4: Use the model and print the predicted category
+prediction = model(batch).squeeze(0).softmax(0)
+class_id = prediction.argmax().item()
+score = prediction[class_id].item()
+category_name = weights.meta["categories"][class_id]
+print(f"{category_name}: {100 * score:.1f}%")
 
-#prediction = output.argmax(dim=1).item()
-probabilities = torch.nn.functional.softmax(output, dim=1)
-max_probs, max_indices = torch.max(probabilities, dim=1)
-predicted_class_idx = max_indices.item()
-predicted_class_label = class_names[predicted_class_idx]
-# print(max_indices)
-print(f"Prediction: {predicted_class_label}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#TODO: for some reason model thinks that a car is a hook bruh
-
+import torch.onnx as onnx
+torch.onnx.export(model, batch, 'model.onnx', export_params=True)
