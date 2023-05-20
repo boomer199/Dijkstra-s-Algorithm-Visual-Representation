@@ -1,5 +1,3 @@
-// Import the `onnxruntime-web` package.
-import * as onnxruntime from "onnxruntime-web";
 
 // Define the `preprocess` function.
 function preprocess(image) {
@@ -8,10 +6,12 @@ function preprocess(image) {
 }
 
 // Create a new inference session.
-const session = new onnxruntime.InferenceSession("model.onnx");
+const session = new ort.InferenceSession("model.onnx");
 
 // Add an event listener to the `fileInput` element.
-document.getElementById("fileInput").addEventListener("change", e);
+document.getElementById("fileInput").addEventListener("change", e =>{
+  
+});
 
 // Create a function that will be called when the file is uploaded.
 function submit() {
