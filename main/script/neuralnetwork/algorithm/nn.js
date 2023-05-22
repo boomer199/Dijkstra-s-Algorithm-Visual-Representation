@@ -26,9 +26,20 @@ function submit() {
       // Preprocess the image.
       const preprocessedImage = preprocess(image);
       // Make a prediction.
+
+
+
+
       const prediction = session.run(["output"], {
         input: preprocessedImage,
       })[0];
+      console.log(prediction)  
+
+
+
+
+
+      
       // Print the predicted category.
       const classId = prediction.argmax();
       const categoryName = weights.meta["categories"][classId];
