@@ -1,3 +1,4 @@
+//https://github.com/yong-asial/ml5-object-detection/tree/master
 
 // Define the `preprocess` function.
 function preprocess(image) {
@@ -9,9 +10,7 @@ function preprocess(image) {
 const session = new ort.InferenceSession("model.onnx");
 
 // Add an event listener to the `fileInput` element.
-document.getElementById("fileInput").addEventListener("change", e =>{
-  
-});
+document.getElementById("fileInput").addEventListener("change", (e) => {});
 
 // Create a function that will be called when the file is uploaded.
 function submit() {
@@ -27,19 +26,11 @@ function submit() {
       const preprocessedImage = preprocess(image);
       // Make a prediction.
 
-
-
-
       const prediction = session.run(["output"], {
         input: preprocessedImage,
       })[0];
-      console.log(prediction)  
+      console.log(prediction);
 
-
-
-
-
-      
       // Print the predicted category.
       const classId = prediction.argmax();
       const categoryName = weights.meta["categories"][classId];
