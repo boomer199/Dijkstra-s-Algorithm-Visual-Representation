@@ -2,19 +2,28 @@
 <html>
 
 <head>
-  <title>Upload and Predict</title>
+  <title>Algorithm Visualizer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.7.1/dist/ml5.min.js"></script>
+  <link rel="stylesheet" href="./script/neuralnetwork/styles.css">
+  <meta charset="utf-8" />
 </head>
 
 <body>
-  <input type="file" id="fileInput" />
-  <div id="result"></div>
-  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
-  <script src="./script/neuralnetwork/algorithm/nn.js"></script> 
-  <button onclick="submit()">Submit</button>
 
-  <script>
-    
-  </script>
+<div id="header-container">
+    <h1 onclick="window.location.reload()">Algorithm Visualizer</h1>
+</div>
+<a id = "homeLink" href="../home.html"> Home </a>
+
+<div id = "center">
+
+  <button class = "btn" id="toggleVideoEl" onclick="toggleVideo()">Hide Video</button>
+  <button class = "btn" id="toggleDetectingEl" onclick="toggleDetecting()">Start Detecting</button>
+  
+
+</div>
+  <script src="./script/neuralnetwork/app.js"></script>
 </body>
 
 </html>
