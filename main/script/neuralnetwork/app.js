@@ -23,8 +23,8 @@ function preload() {
 function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
-  video.className += "video";
   video.size(640, 480);
+
   console.log('video element is created');
   video.elt.addEventListener('loadeddata', function() {
     // set cursor back to default

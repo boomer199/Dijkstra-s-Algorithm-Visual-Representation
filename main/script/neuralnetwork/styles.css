@@ -62,13 +62,19 @@ div#header-container > h1:hover{
 
 canvas {
     border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
   
-  video {
+video {
     border: 1px solid blue;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,12 +113,6 @@ canvas {
 
 
 #center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.video{
     display: flex;
     align-items: center;
     justify-content: center;
